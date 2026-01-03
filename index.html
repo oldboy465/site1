@@ -15,7 +15,1230 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+/* ====================================================================
+PROJETO: SITE VEREADOR DANIEL OLIVEIRA
+ARQUIVO: css/style.css
+DESCRIÇÃO: Folha de estilos principal (Master Stylesheet)
+TEMA: Baseado em 'Projeto_tema.md' (Poppins + Archivo)
+MODELO: Baseado em 'Projeto_site modelo.md' (Marcela Trópia)
+AUTOR: GERAÇÃO AUTOMATIZADA
+VERSÃO: 1.0.0 (MONSTRUOSA/COMPLETA)
+====================================================================
+*/
+
+/* =================================================================
+   1. VARIÁVEIS GLOBAIS (:root)
+   Definição centralizada de cores, tipografia e espaçamentos.
+================================================================= */
+:root {
+    /* Paleta de Cores (Identidade Visual PSD / Daniel Oliveira) */
+    --color-primary: #003366;       /* Azul Marinho Profundo */
+    --color-primary-dark: #002244;  /* Azul Noturno */
+    --color-primary-light: #0055aa; /* Azul Vibrante */
+    
+    --color-secondary: #f4a261;     /* Laranja Suave (Acento) */
+    --color-secondary-dark: #e76f51;/* Laranja Queimado */
+    
+    --color-accent: #2a9d8f;        /* Verde Petróleo (Detalhes/Sucesso) */
+    --color-danger: #e63946;        /* Vermelho (Alertas) */
+
+    /* Tons Neutros */
+    --color-text-main: #333333;     /* Texto Principal */
+    --color-text-light: #666666;    /* Texto Secundário */
+    --color-text-lighter: #999999;  /* Texto Terciário */
+    --color-white: #ffffff;
+    --color-off-white: #f9f9f9;
+    --color-border: #e0e0e0;
+    --color-bg-light: #f4f6f8;
+    
+    /* Tipografia (Conforme tema.md) */
+    --font-heading: 'Archivo', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+    
+    --fs-xs: 0.75rem;   /* 12px */
+    --fs-sm: 0.875rem;  /* 14px */
+    --fs-base: 1rem;    /* 16px */
+    --fs-md: 1.125rem;  /* 18px */
+    --fs-lg: 1.25rem;   /* 20px */
+    --fs-xl: 1.5rem;    /* 24px */
+    --fs-2xl: 2rem;     /* 32px */
+    --fs-3xl: 2.5rem;   /* 40px */
+    --fs-4xl: 3.5rem;   /* 56px */
+    
+    /* Espaçamentos e Layout */
+    --container-width: 1200px;
+    --header-height: 80px;
+    --top-bar-height: 40px;
+    --section-spacing: 5rem; /* 80px */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    --border-radius-pill: 50px;
+
+    /* Sombras e Efeitos */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    --shadow-hover: 0 20px 25px rgba(0,0,0,0.15);
+    
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =================================================================
+   2. RESET E BASE
+   Normalização e configurações fundamentais.
+================================================================= */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--color-text-main);
+    background-color: var(--color-white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-off-white);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* =================================================================
+   3. UTILITÁRIOS E LAYOUT
+   Classes auxiliares para estrutura e alinhamento.
+================================================================= */
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Flexbox Utilities */
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+}
+
+/* Grid Utilities */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* Espaçamentos */
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 2rem; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Botões Globais */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.8rem;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    border-radius: var(--border-radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    gap: 0.5rem; /* Espaço para ícone */
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 4px 6px rgba(0, 51, 102, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 51, 102, 0.4);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    transform: translateY(-3px);
+}
+
+.btn-dark {
+    background-color: var(--color-primary-dark);
+    color: var(--color-white);
+    border: none;
+}
+.btn-dark:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.btn-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.btn-link:hover {
+    color: var(--color-secondary);
+}
+
+/* =================================================================
+   4. TOPO E CABEÇALHO (HEADER)
+   Barra superior e navegação principal.
+================================================================= */
+.top-bar {
+    background-color: var(--color-primary-dark);
+    color: rgba(255, 255, 255, 0.9);
+    height: var(--top-bar-height);
+    font-size: var(--fs-xs);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    position: relative;
+}
+
+.top-info span {
+    margin-right: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.top-socials a {
+    color: var(--color-white);
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.top-socials a:hover {
+    opacity: 1;
+    color: var(--color-secondary);
+    transform: scale(1.1);
+}
+
+.site-header {
+    background-color: var(--color-white);
+    height: var(--header-height);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-normal);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.logo .party-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    padding: 2px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+.main-nav .menu-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.main-nav .menu-list a {
+    font-weight: 500;
+    color: var(--color-text-main);
+    font-size: var(--fs-sm);
+    position: relative;
+}
+
+.main-nav .menu-list a:not(.btn-highlight)::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: width var(--transition-normal);
+}
+
+.main-nav .menu-list a:not(.btn-highlight):hover::after,
+.main-nav .menu-list a.active::after {
+    width: 100%;
+}
+
+.main-nav .menu-list a.btn-highlight {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius-md);
+    transition: var(--transition-normal);
+}
+
+.main-nav .menu-list a.btn-highlight:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-2px);
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+/* =================================================================
+   5. SEÇÃO HERÓI (HERO SECTION)
+   Destaque principal com imagem e chamada.
+================================================================= */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Altura fixa para desktop */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23003366"/><path d="M0 50L50 0L100 50L50 100Z" fill="%23002244" opacity="0.1"/></svg>') center center; /* Fallback pattern */
+    background-color: var(--color-primary); /* Fallback Color */
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-top: -1px; /* Remove gap */
+}
+
+/* Gradiente sobreposto para legibilidade */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.95) 0%, rgba(0, 51, 102, 0.7) 60%, rgba(244, 162, 97, 0.1) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.hero-text {
+    max-width: 50%;
+    color: var(--color-white);
+    animation: slideUpFade 1s ease-out forwards;
+}
+
+.hero-text .tagline {
+    display: inline-block;
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.hero-text h2 {
+    font-size: var(--fs-4xl);
+    color: var(--color-white);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+    font-size: var(--fs-md);
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    max-width: 90%;
+}
+
+.hero-btns {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Imagem do Candidato no Hero */
+.hero-image {
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    height: 90%; /* Ajuste conforme a imagem real */
+    max-width: 45%;
+    z-index: 2;
+    animation: slideInRight 1.2s ease-out forwards;
+    pointer-events: none; /* Deixa cliques passarem se necessário */
+}
+
+.hero-image img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+/* Animações */
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* =================================================================
+   6. DESTAQUES RÁPIDOS (QUICK FEATURES)
+================================================================= */
+.quick-features {
+    position: relative;
+    z-index: 10;
+    margin-top: -3rem; /* Efeito overlap no Hero */
+    padding-bottom: 3rem;
+}
+
+.feature-box {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    transition: var(--transition-normal);
+    border-bottom: 4px solid transparent;
+}
+
+.feature-box:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+    border-bottom-color: var(--color-secondary);
+}
+
+.feature-box i {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    transition: transform 0.4s ease;
+}
+
+.feature-box:hover i {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--color-secondary);
+}
+
+.feature-box h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: 0.5rem;
+    color: var(--color-primary-dark);
+}
+
+.feature-box p {
+    font-size: var(--fs-sm);
+    color: var(--color-text-light);
+    margin: 0;
+}
+
+/* =================================================================
+   7. SEÇÃO BIOGRAFIA (QUEM SOU)
+================================================================= */
+.about-section {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-white);
+}
+
+.about-img-wrapper {
+    position: relative;
+    padding: 2rem;
+}
+
+.img-frame {
+    position: relative;
+    z-index: 1;
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Placeholder se não houver imagem */
+.placeholder-img {
+    width: 100%;
+    height: 400px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.img-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.img-frame:hover img {
+    transform: scale(1.05);
+}
+
+/* Elemento decorativo atrás da foto */
+.about-img-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 60%;
+    background-image: radial-gradient(var(--color-secondary) 2px, transparent 2px);
+    background-size: 20px 20px;
+    z-index: 0;
+    opacity: 0.5;
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 120px;
+}
+
+.experience-badge .number {
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    line-height: 1;
+    color: var(--color-secondary);
+}
+
+.experience-badge .text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section-subtitle {
+    display: block;
+    font-size: var(--fs-sm);
+    font-weight: 700;
+    color: var(--color-secondary-dark);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.about-content h2 {
+    font-size: var(--fs-3xl);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.about-content h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-secondary);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+}
+
+.check-list {
+    margin: 1.5rem 0 2rem;
+}
+
+.check-list li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: var(--color-primary-dark);
+}
+
+.check-list li i {
+    color: var(--color-accent);
+    margin-right: 10px;
+    background: rgba(42, 157, 143, 0.1);
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+}
+
+/* =================================================================
+   8. ESTATÍSTICAS (STATS SECTION)
+================================================================= */
+.stats-section {
+    background-color: var(--color-primary);
+    padding: 3rem 0;
+    color: var(--color-white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Padrão de fundo suave */
+.stats-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1h2v2H1V1zm4 0h2v2H5V1zm4 0h2v2H9V1zM1 5h2v2H1V5zm4 0h2v2H5V5zm4 0h2v2H9V5zm-8 4h2v2H1V9zm4 0h2v2H5V9zm4 0h2v2H9V9z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    z-index: 1;
+}
+
+.flex-stats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.stat-item .count {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.stat-item .label {
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* =================================================================
+   9. PROJETOS E PAUTAS (PROJECTS SECTION)
+================================================================= */
+.projects-section {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-bg-light);
+}
+
+.section-header {
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--color-white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border);
+    transition: var(--transition-normal);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.project-card:hover {
+    border-color: var(--color-primary-light);
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 51, 102, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    transition: var(--transition-normal);
+}
+
+.project-card:hover .card-icon {
+    background-color: var(--color-primary);
+}
+
+.card-icon i {
+    font-size: 1.8rem;
+    color: var(--color-primary);
+    transition: var(--transition-normal);
+}
+
+.project-card:hover .card-icon i {
+    color: var(--color-white);
+}
+
+.card-content h3 {
+    font-size: var(--fs-xl);
+    margin-bottom: 1rem;
+}
+
+.card-content p {
+    color: var(--color-text-light);
+    font-size: var(--fs-sm);
+    flex-grow: 1;
+}
+
+.read-more {
+    margin-top: auto;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: var(--fs-sm);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.read-more i {
+    transition: transform 0.2s;
+}
+
+.read-more:hover i {
+    transform: translateX(5px);
+}
+
+/* =================================================================
+   10. NOTÍCIAS (NEWS SECTION)
+================================================================= */
+.news-section {
+    padding: var(--section-spacing) 0;
+    background-color: var(--color-white);
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.news-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.news-img {
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.news-img .img-bg {
+    width: 100%;
+    transition: transform var(--transition-slow);
+}
+
+.news-item:hover .news-img .img-bg {
+    transform: scale(1.05);
+}
+
+.news-body {
+    flex-grow: 1;
+}
+
+.news-body .date {
+    font-size: 0.8rem;
+    color: var(--color-text-lighter);
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.news-body h4 {
+    font-size: var(--fs-lg);
+    line-height: 1.4;
+    margin-bottom: 0.8rem;
+}
+
+.news-body h4 a {
+    color: var(--color-text-main);
+    background-image: linear-gradient(var(--color-secondary), var(--color-secondary));
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size var(--transition-normal);
+}
+
+.news-body h4 a:hover {
+    background-size: 100% 2px;
+    color: var(--color-primary);
+}
+
+.news-body p {
+    font-size: var(--fs-sm);
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* =================================================================
+   11. NEWSLETTER E WHATSAPP
+================================================================= */
+.newsletter-section {
+    padding: 3rem 0;
+    margin-bottom: -3rem; /* Overlap footer */
+    position: relative;
+    z-index: 10;
+}
+
+.newsletter-box {
+    background-color: var(--color-primary-dark);
+    background-image: linear-gradient(120deg, var(--color-primary-dark) 0%, #004080 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem;
+    color: var(--color-white);
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.newsletter-text h3 {
+    color: var(--color-white);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.newsletter-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0 1.5rem;
+    border-radius: var(--border-radius-pill);
+    border: none;
+    height: 50px;
+    font-family: var(--font-body);
+}
+
+.newsletter-form input:focus {
+    outline: 2px solid var(--color-secondary);
+}
+
+.whatsapp-cta {
+    text-align: center;
+    border-left: 1px solid rgba(255,255,255,0.1);
+    padding-left: 2rem;
+}
+
+.whatsapp-cta p {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #25D366;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--border-radius-pill);
+    font-weight: 700;
+    font-size: 0.9rem;
+    gap: 0.5rem;
+    transition: var(--transition-normal);
+}
+
+.btn-whatsapp:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* =================================================================
+   12. RODAPÉ (FOOTER)
+================================================================= */
+.site-footer {
+    background-color: #1a1a1a;
+    color: #b3b3b3;
+    padding-top: 6rem; /* Compensa o newsletter overlap */
+    font-size: 0.9rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #333;
+}
+
+.footer-logo {
+    color: var(--color-white);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.footer-socials a {
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-white);
+    transition: var(--transition-fast);
+}
+
+.footer-socials a:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-3px);
+}
+
+.footer-col h4 {
+    color: var(--color-white);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-col ul li a:hover {
+    color: var(--color-secondary);
+    padding-left: 5px;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.contact-list i {
+    color: var(--color-secondary);
+    margin-top: 3px;
+}
+
+.footer-bottom {
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dev-credits {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+/* =================================================================
+   13. RESPONSIVIDADE (MEDIA QUERIES)
+   Ajustes para Tablets e Mobile.
+================================================================= */
+
+/* Tablet (max 992px) */
+@media (max-width: 992px) {
+    :root {
+        --fs-4xl: 2.8rem;
+        --section-spacing: 4rem;
+    }
+    
+    .hero-image {
+        opacity: 0.2; /* Fade na imagem no tablet para não brigar com texto */
+        max-width: 60%;
+        right: -10%;
+    }
+    
+    .hero-text {
+        max-width: 80%;
+    }
+    
+    .newsletter-box {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .whatsapp-cta {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-left: 0;
+        padding-top: 1.5rem;
+    }
+    
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (max 768px) */
+@media (max-width: 768px) {
+    .top-bar {
+        display: none; /* Oculta top bar em mobile */
+    }
+    
+    .site-header .main-nav .menu-list {
+        display: none; /* Menu padrão oculto */
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--color-white);
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+    }
+    
+    .site-header .main-nav.active .menu-list {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+    
+    @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .hero-section {
+        height: auto;
+        padding: 6rem 0 4rem;
+        text-align: center;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        max-width: 100%;
+    }
+    
+    .hero-btns {
+        justify-content: center;
+    }
+    
+    .hero-image {
+        display: none; /* Remove imagem no mobile */
+    }
+    
+    .grid-4, .grid-3, .grid-2, .news-grid, .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-item {
+        width: 45%; /* 2 por linha no mobile */
+        flex: none;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .newsletter-form button {
+        width: 100%;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+
+/* Telas muito pequenas (max 480px) */
+@media (max-width: 480px) {
+    :root {
+        --fs-4xl: 2rem;
+        --fs-3xl: 1.8rem;
+    }
+    
+    .hero-text h2 {
+        font-size: 2.2rem;
+    }
+    
+    .stat-item {
+        width: 100%; /* 1 por linha */
+    }
+}
+    </style>
 </head>
 <body class="home">
 
@@ -71,7 +1294,9 @@
                 </div>
             </div>
             <div class="hero-image">
-                <img src="img/daniel-oliveira-hero.png" alt="Foto do Vereador Daniel Oliveira" onerror="this.style.display='none'; document.querySelector('.hero-text').style.maxWidth='100%';">
+                <div style="width: 100%; height: 100%; background-color: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); font-style: italic;">
+                    Imagem do Vereador
+                </div>
             </div>
         </div>
     </section>
@@ -105,8 +1330,10 @@
         <div class="container grid-2">
             <div class="about-img-wrapper">
                 <div class="img-frame">
-                    <img src="img/sobre-daniel.jpg" alt="Daniel Oliveira em plenário"> 
+                    <div class="placeholder-img">
+                        Foto do Vereador
                     </div>
+                </div>
                 <div class="experience-badge">
                     <span class="number">PSD</span>
                     <span class="text">Partido Social<br>Democrático</span>
@@ -291,6 +1518,593 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script>
+/**
+ * ====================================================================
+ * PROJETO: SITE VEREADOR DANIEL OLIVEIRA
+ * ARQUIVO: js/script.js
+ * DESCRIÇÃO: Script principal de interatividade e lógica de front-end.
+ * FUNCIONALIDADES:
+ * - Navegação Mobile e Sticky Header Inteligente
+ * - Scroll Suave (Smooth Scroll) com compensação de altura
+ * - Animação de Números (Counters) com Easing
+ * - Sistema de Notificações (Toasts) Dinâmicos
+ * - Validação de Formulários e Máscara de Input
+ * - Animações de Entrada (Scroll Reveal)
+ * - Botão Voltar ao Topo
+ * AUTOR: GERAÇÃO AUTOMATIZADA
+ * VERSÃO: 1.0.0 (COMPLETE/MONSTROUS)
+ * ====================================================================
+ */
+
+'use strict';
+
+// Aguarda o carregamento completo do DOM para iniciar
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // =================================================================
+    // 1. CONFIGURAÇÕES E SELETORES GLOBAIS
+    // =================================================================
+    const APP_CONFIG = {
+        scrollOffset: 80, // Compensação para o header fixo
+        mobileBreakpoint: 768,
+        animationDuration: 2000, // ms para contadores
+        toastDuration: 4000, // ms para notificações
+    };
+
+    const UI = {
+        header: document.querySelector('.site-header'),
+        mobileBtn: document.querySelector('.mobile-menu-btn'),
+        navMenu: document.querySelector('.main-nav'), // Container da navegação
+        menuList: document.querySelector('.menu-list'),
+        links: document.querySelectorAll('a[href^="#"]'),
+        sections: document.querySelectorAll('section'),
+        counters: document.querySelectorAll('.count'),
+        forms: document.querySelectorAll('form'),
+        newsletterForm: document.querySelector('.newsletter-form'),
+    };
+
+    // Estado global da aplicação
+    const STATE = {
+        isMenuOpen: false,
+        lastScrollTop: 0,
+        scrollingDown: false,
+    };
+
+    // =================================================================
+    // 2. CONTROLE DE NAVEGAÇÃO E HEADER
+    // =================================================================
+
+    /**
+     * Gerencia o comportamento do cabeçalho ao rolar a página.
+     * Adiciona sombra e esconde/mostra baseado na direção do scroll.
+     */
+    const handleHeaderScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const threshold = 50;
+
+        // Adiciona sombra quando rola para baixo
+        if (scrollTop > threshold) {
+            UI.header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            UI.header.style.padding = '0.5rem 0'; // Reduz altura levemente
+        } else {
+            UI.header.style.boxShadow = 'var(--shadow-sm)';
+            UI.header.style.padding = ''; // Volta ao padrão CSS
+        }
+
+        STATE.lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+
+    /**
+     * Alterna o menu mobile (Hambúrguer)
+     */
+    const toggleMobileMenu = () => {
+        STATE.isMenuOpen = !STATE.isMenuOpen;
+        const icon = UI.mobileBtn.querySelector('i');
+
+        if (STATE.isMenuOpen) {
+            UI.navMenu.classList.add('active');
+            UI.mobileBtn.setAttribute('aria-expanded', 'true');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+            document.body.style.overflow = 'hidden'; // Trava scroll do corpo
+        } else {
+            UI.navMenu.classList.remove('active');
+            UI.mobileBtn.setAttribute('aria-expanded', 'false');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+            document.body.style.overflow = ''; // Destrava scroll
+        }
+    };
+
+    /**
+     * Fecha o menu mobile ao clicar em um link
+     */
+    const closeMenuOnClick = () => {
+        if (STATE.isMenuOpen) toggleMobileMenu();
+    };
+
+    // Listeners de Navegação
+    window.addEventListener('scroll', handleHeaderScroll);
+    UI.mobileBtn.addEventListener('click', toggleMobileMenu);
+
+    // =================================================================
+    // 3. SCROLL SUAVE E SPY SCROLL (Highlight do Menu)
+    // =================================================================
+
+    /**
+     * Implementação manual de scroll suave para compatibilidade total
+     * e ajuste preciso do offset do header.
+     */
+    const smoothScrollTo = (targetId) => {
+        const targetElement = document.querySelector(targetId);
+        if (!targetElement) return;
+
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - APP_CONFIG.scrollOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    };
+
+    // Aplica o scroll suave a todos os links internos
+    UI.links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            
+            // Ignora links externos ou vazios
+            if (href === '#' || !href.startsWith('#')) return;
+
+            e.preventDefault();
+            closeMenuOnClick();
+            smoothScrollTo(href);
+        });
+    });
+
+    /**
+     * Active Scroll Spy: Destaca o item do menu conforme a seção visível.
+     */
+    const activeScrollSpy = () => {
+        const scrollPosition = window.scrollY + APP_CONFIG.scrollOffset + 50;
+
+        UI.sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                document.querySelectorAll('.menu-list a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+
+    window.addEventListener('scroll', activeScrollSpy);
+
+    // =================================================================
+    // 4. SISTEMA DE ANIMAÇÃO DE NÚMEROS (COUNTERS)
+    // =================================================================
+
+    /**
+     * Função de Easing para suavizar a contagem (EaseOutQuad)
+     */
+    const easeOutQuad = (t) => t * (2 - t);
+
+    /**
+     * Anima um único contador
+     * @param {HTMLElement} el - O elemento DOM do contador
+     */
+    const animateCounter = (el) => {
+        const target = +el.getAttribute('data-target'); // O '+' converte string para número
+        const text = el.innerText;
+        // Verifica se tem símbolo (ex: 50+, 100%)
+        const symbol = text.replace(/[0-9]/g, ''); 
+        
+        let start = 0;
+        const duration = APP_CONFIG.animationDuration;
+        const startTime = performance.now();
+
+        const updateCount = (currentTime) => {
+            const elapsedTime = currentTime - startTime;
+            const progress = Math.min(elapsedTime / duration, 1);
+            const easeProgress = easeOutQuad(progress);
+
+            const currentCount = Math.floor(easeProgress * target);
+
+            el.innerText = currentCount + symbol;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCount);
+            } else {
+                el.innerText = target + symbol; // Garante o valor final exato
+            }
+        };
+
+        requestAnimationFrame(updateCount);
+    };
+
+    /**
+     * Intersection Observer para disparar contadores apenas quando visíveis
+     */
+    const observerOptions = {
+        threshold: 0.5 // Dispara quando 50% do elemento estiver visível
+    };
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                animateCounter(counter);
+                observer.unobserve(counter); // Para de observar após animar
+            }
+        });
+    }, observerOptions);
+
+    UI.counters.forEach(counter => {
+        statsObserver.observe(counter);
+    });
+
+    // =================================================================
+    // 5. SISTEMA DE NOTIFICAÇÕES (TOASTS)
+    // Cria elementos HTML dinamicamente para feedback do usuário
+    // =================================================================
+
+    /**
+     * Cria e exibe um toast na tela.
+     * @param {string} message - Mensagem a ser exibida
+     * @param {string} type - 'success', 'error', 'warning'
+     */
+    const showToast = (message, type = 'success') => {
+        // Verifica se já existe container, se não, cria
+        let toastContainer = document.querySelector('.toast-container');
+        if (!toastContainer) {
+            toastContainer = document.createElement('div');
+            toastContainer.className = 'toast-container';
+            // Estilos inline para garantir funcionamento sem CSS extra (fallback)
+            // Mas idealmente isso estaria no style.css. Vamos injetar estilo aqui para garantir
+            // a "funcionalidade total" solicitada sem depender de atualizar o CSS.
+            Object.assign(toastContainer.style, {
+                position: 'fixed',
+                bottom: '20px',
+                right: '20px',
+                zIndex: '9999',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '10px'
+            });
+            document.body.appendChild(toastContainer);
+        }
+
+        // Cria o elemento do toast
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        
+        // Ícones baseados no tipo
+        const icons = {
+            success: '<i class="fa-solid fa-check-circle"></i>',
+            error: '<i class="fa-solid fa-circle-exclamation"></i>',
+            warning: '<i class="fa-solid fa-triangle-exclamation"></i>'
+        };
+
+        const colors = {
+            success: '#2a9d8f',
+            error: '#e63946',
+            warning: '#f4a261'
+        };
+
+        toast.innerHTML = `
+            <div class="toast-content" style="display:flex; align-items:center; gap:10px; background:white; padding:15px 20px; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.15); border-left: 5px solid ${colors[type]}; min-width: 300px; animation: slideInToast 0.3s ease forwards;">
+                <span style="color:${colors[type]}; font-size:1.2rem;">${icons[type]}</span>
+                <p style="margin:0; font-size:0.9rem; color:#333; font-weight:500;">${message}</p>
+            </div>
+        `;
+
+        toastContainer.appendChild(toast);
+
+        // Remove o toast após o tempo definido
+        setTimeout(() => {
+            toast.style.animation = 'fadeOutToast 0.3s ease forwards';
+            toast.addEventListener('animationend', () => {
+                toast.remove();
+                if (toastContainer.children.length === 0) {
+                    toastContainer.remove();
+                }
+            });
+        }, APP_CONFIG.toastDuration);
+    };
+
+    // Injeta Keyframes para o Toast dinamicamente
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `
+        @keyframes slideInToast {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOutToast {
+            to { transform: translateX(100%); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(styleSheet);
+
+    // =================================================================
+    // 6. VALIDAÇÃO DE FORMULÁRIO E MÁSCARAS
+    // =================================================================
+
+    /**
+     * Valida um endereço de e-mail com Regex
+     * @param {string} email 
+     * @returns {boolean}
+     */
+    const validateEmail = (email) => {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    /**
+     * Manipula o envio do formulário de Newsletter
+     */
+    if (UI.newsletterForm) {
+        UI.newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const input = UI.newsletterForm.querySelector('input[type="email"]');
+            const button = UI.newsletterForm.querySelector('button');
+            const originalBtnText = button.innerHTML;
+
+            // Validação básica
+            if (!input.value.trim()) {
+                showToast('Por favor, digite seu e-mail.', 'warning');
+                input.focus();
+                return;
+            }
+
+            if (!validateEmail(input.value)) {
+                showToast('Por favor, digite um e-mail válido.', 'error');
+                input.focus();
+                return;
+            }
+
+            // Simulação de envio AJAX (Loading State)
+            button.disabled = true;
+            button.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+
+            setTimeout(() => {
+                // Simulação de Sucesso
+                showToast('Inscrição realizada com sucesso! Bem-vindo.', 'success');
+                input.value = ''; // Limpa campo
+                button.innerHTML = '<i class="fa-solid fa-check"></i> Inscrito!';
+                
+                // Restaura botão após alguns segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.innerHTML = originalBtnText;
+                }, 3000);
+
+            }, 1500); // Delay simulado de 1.5s
+        });
+    }
+
+    // =================================================================
+    // 7. ANIMAÇÕES DE ENTRADA (SCROLL REVEAL)
+    // Adiciona classe 'visible' quando elementos entram na tela
+    // =================================================================
+    
+    const revealElements = document.querySelectorAll('.feature-box, .project-card, .news-item, .about-content, .img-frame');
+
+    // Configuração inicial CSS via JS para garantir que comecem invisíveis
+    revealElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease-out';
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // =================================================================
+    // 8. EFEITO PARALLAX NO HERO (BÔNUS VISUAL)
+    // =================================================================
+    const heroSection = document.querySelector('.hero-section');
+    const heroText = document.querySelector('.hero-text');
+    
+    if (heroSection && window.innerWidth > APP_CONFIG.mobileBreakpoint) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.pageYOffset;
+            
+            // Só aplica se estivermos vendo o hero
+            if (scrollY < heroSection.offsetHeight) {
+                // Move o texto mais devagar que o scroll (efeito profundidade)
+                heroText.style.transform = `translateY(${scrollY * 0.3}px)`;
+                heroText.style.opacity = 1 - (scrollY / 500);
+            }
+        });
+    }
+
+    // =================================================================
+    // 9. BOTÃO "VOLTAR AO TOPO"
+    // Criação dinâmica do botão para não poluir o HTML inicial
+    // =================================================================
+    
+    const createScrollTopBtn = () => {
+        const btn = document.createElement('button');
+        btn.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+        btn.className = 'scroll-top-btn';
+        
+        // Estilização JS para garantir funcionalidade imediata
+        Object.assign(btn.style, {
+            position: 'fixed',
+            bottom: '30px',
+            right: '30px',
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            backgroundColor: 'var(--color-secondary)',
+            color: 'white',
+            border: 'none',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+            zIndex: '990',
+            opacity: '0',
+            visibility: 'hidden',
+            transform: 'translateY(20px)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        });
+
+        // Hover Effect
+        btn.addEventListener('mouseenter', () => {
+            btn.style.backgroundColor = 'var(--color-secondary-dark)';
+            btn.style.transform = 'translateY(-5px)';
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.backgroundColor = 'var(--color-secondary)';
+            btn.style.transform = 'translateY(0)';
+        });
+
+        // Click Action
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.body.appendChild(btn);
+        return btn;
+    };
+
+    const scrollTopBtn = createScrollTopBtn();
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            scrollTopBtn.style.opacity = '1';
+            scrollTopBtn.style.visibility = 'visible';
+            scrollTopBtn.style.transform = 'translateY(0)';
+        } else {
+            scrollTopBtn.style.opacity = '0';
+            scrollTopBtn.style.visibility = 'hidden';
+            scrollTopBtn.style.transform = 'translateY(20px)';
+        }
+    });
+
+    // =================================================================
+    // 10. GESTÃO DE COOKIES (LGPD - SIMULAÇÃO)
+    // =================================================================
+    
+    const initCookieBanner = () => {
+        // Verifica se já aceitou
+        if (localStorage.getItem('cookieConsent') === 'true') return;
+
+        const banner = document.createElement('div');
+        banner.className = 'cookie-banner';
+        
+        Object.assign(banner.style, {
+            position: 'fixed',
+            bottom: '0',
+            left: '0',
+            width: '100%',
+            backgroundColor: '#fff',
+            padding: '20px',
+            boxShadow: '0 -5px 20px rgba(0,0,0,0.1)',
+            zIndex: '10000',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '15px',
+            borderTop: '4px solid var(--color-primary)',
+            transform: 'translateY(100%)',
+            transition: 'transform 0.5s ease-out'
+        });
+
+        // Responsividade para layout do banner
+        if(window.innerWidth > 768) {
+            banner.style.flexDirection = 'row';
+            banner.style.justifyContent = 'space-between';
+            banner.style.padding = '20px 10%';
+        }
+
+        banner.innerHTML = `
+            <div style="flex: 1">
+                <p style="margin: 0; color: #333; font-size: 0.9rem;">
+                    <strong>🍪 Política de Cookies:</strong> Utilizamos cookies para melhorar sua experiência de navegação e analisar o tráfego do site. Ao continuar, você concorda com nossa política de privacidade.
+                </p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button id="acceptCookies" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.5rem 1rem;">Aceitar Todos</button>
+                <button id="rejectCookies" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.5rem 1rem; color: #333; border-color: #ddd;">Recusar</button>
+            </div>
+        `;
+
+        document.body.appendChild(banner);
+
+        // Animação de entrada (Delay pequeno)
+        setTimeout(() => {
+            banner.style.transform = 'translateY(0)';
+        }, 1000);
+
+        // Lógica dos botões
+        document.getElementById('acceptCookies').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'true');
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => banner.remove(), 500);
+        });
+
+        document.getElementById('rejectCookies').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'false'); // Salva recusa para não perguntar de novo na sessão
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => banner.remove(), 500);
+        });
+    };
+
+    initCookieBanner();
+
+    // =================================================================
+    // 11. EFEITOS DE HOVER NOS CARDS DE PROJETOS (TILT 3D)
+    // =================================================================
+    
+    const projectCards = document.querySelectorAll('.project-card');
+
+    projectCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            // Calcula rotação baseada na posição do mouse
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * -5; // Max 5deg
+            const rotateY = ((x - centerX) / centerX) * 5;  // Max 5deg
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+    });
+
+    console.log('✅ Site do Vereador Daniel Oliveira carregado com sucesso.');
+});
+    </script>
 </body>
 </html>
